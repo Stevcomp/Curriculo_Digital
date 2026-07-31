@@ -35,6 +35,7 @@ $formacoes = $pessoa ? readAll($pdo, 'formacao', 'dados_pessoais_id = ?', [$pess
 
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <title><?= $pessoa ? htmlspecialchars($pessoa['nome']) : 'Cadastro Inicial' ?></title>
     <link rel="stylesheet" href="style.css">
     <?php if (!$pessoa): ?>
@@ -80,24 +81,53 @@ $formacoes = $pessoa ? readAll($pdo, 'formacao', 'dados_pessoais_id = ?', [$pess
 
             <!-- CABEÇALHO -->
             <div class="header">
-                <h1><?= htmlspecialchars($pessoa['nome']) ?></h1>
-                <h2><?= htmlspecialchars($pessoa['cargo']) ?></h2>
 
-                <?php if (!empty($pessoa['resumo'])): ?>
-                    <p class="resumo"><?= htmlspecialchars($pessoa['resumo']) ?></p>
-                <?php endif; ?>
+                <!-- Lado Esquerdo: Dados Pessoais -->
+                <div class="header-info">
+                    <h1><?= htmlspecialchars($pessoa['nome']) ?></h1>
+                    <h2><?= htmlspecialchars($pessoa['cargo']) ?></h2>
 
-                <div class="contatos">
-                    <?php if (count($contatos) > 0): ?>
-                        <?php foreach ($contatos as $contato): ?>
-                            <span>
-                                <?= htmlspecialchars(ucfirst($contato['tipo'])) ?>:
-                                <?= htmlspecialchars($contato['valor']) ?>
-                            </span>
-                        <?php endforeach; ?>
-                    <?php else: ?>
-                        <span>Nenhum contato cadastrado</span>
+                    <?php if (!empty($pessoa['resumo'])): ?>
+                        <p class="resumo"><?= htmlspecialchars($pessoa['resumo']) ?></p>
                     <?php endif; ?>
+
+                    <div class="contatos">
+                        <?php if (count($contatos) > 0): ?>
+                            <?php foreach ($contatos as $contato): ?>
+                                <span>
+                                    <?= htmlspecialchars(ucfirst($contato['tipo'])) ?>:
+                                    <?= htmlspecialchars($contato['valor']) ?>
+                                </span>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <span>Nenhum contato cadastrado</span>
+                        <?php endif; ?>
+                    </div>
+                </div>
+
+                <!-- Lado Direito: Círculo da Foto + Upload e salvamento no banco-->
+                <div class="perfil-avatar-container">
+                    <div class="perfil-avatar">
+                        <?php
+
+                        if (!empty($pessoa['foto_url']) && file_exists('uploads/' . $pessoa['foto_url'])) {
+                            $fotoExibicao = 'uploads/' . $pessoa['foto_url'];
+                            echo "<img src='{$fotoExibicao}' alt='Foto de Perfil'>";
+                        } else {
+                            echo "<i class='fas fa-user'></i>";
+                        }
+                        ?>
+                    </div>
+
+                    <!-- Formulário nativo que dispara o envio pelo próprio navegador -->
+                    <form action="processa_foto.php" method="POST" enctype="multipart/form-data" id="form-foto">
+                        <input type="hidden" name="dados_pessoais_id" value="<?= $pessoa['id'] ?>">
+
+                        <label for="input-foto" class="btn-upload-foto" title="Alterar Foto">
+                            <i class="fas fa-camera"></i>
+                        </label>
+                        <input type="file" name="foto" id="input-foto" accept="image/*" onchange="this.form.submit()">
+                    </form>
                 </div>
             </div>
 

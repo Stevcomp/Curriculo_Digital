@@ -1,0 +1,131 @@
+/* Configuração padrão da página */
+* { 
+    box-sizing: border-box; 
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #dde5f0;
+    color: #2c3e50;
+    padding: 30px;
+}
+
+/* Estrutura do painel de administração */
+.admin-container {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+h1 { 
+    margin-bottom: 5px; 
+}
+
+/* Cartões dos Forms e das seções */
+.card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 25px;
+    margin-top: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.card h2 {
+    font-size: 17px;
+    margin-bottom: 15px;
+    border-left: 4px solid #2c3e50;
+    padding-left: 10px;
+}
+
+.card p {
+    font-weight: 500;
+}
+
+/* Formulários, rótulos e campos de entrada */
+label {
+    display: block;
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 12px;
+    margin-bottom: 4px;
+}
+
+input[type="text"], 
+textarea, 
+select {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+/* Botões padrões e de interações */
+button {
+    background: #2c3e50;
+    color: #fff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 8px;
+}
+
+button:hover { 
+    background: #1a2634; 
+}
+
+/* Botão de exclusão de dados */
+.btn-excluir {
+    background: #c0392b;
+    padding: 3px 10px;
+    font-size: 12px;
+    margin: 0 0 0 10px;
+}
+
+.btn-excluir:hover { 
+    background: #922b21; 
+}
+
+/* Listagem de itens cadastrados */
+.lista {
+    list-style: none;
+    margin-bottom: 15px;
+}
+
+.lista li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+}
+
+/* Layouts de utilidade do formulário */
+.form-excluir { 
+    display: inline; 
+}
+
+.form-inline {
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+}
+
+.form-inline input, 
+.form-inline select { 
+    margin-bottom: 0; 
+}
+
+.form-stack { 
+    display: flex; 
+    flex-direction: column; 
+}
+
+/* Mensagens de estado vazio */
+.vazio { 
+    color: #999; 
+    font-style: italic; 
+}

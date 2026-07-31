@@ -184,7 +184,7 @@ $formacoes = $pessoa ? readAll($pdo, 'formacao', 'dados_pessoais_id = ?', [1]) :
                     <input type="text" name="empresa" placeholder="Empresa" required>
                     <input type="text" name="funcao" placeholder="Função" required>
                     <input type="text" name="periodo" placeholder="Período (ex: Jan/2024 - Atual)" required>
-                    <textarea name="descricao" placeholder="Descrição" rows="5"></textarea>
+                    <textarea name="descricao" placeholder="Descrição" rows="5" maxlength="500"></textarea>
                     <button type="submit">Adicionar</button>
                 </form>
             </section>

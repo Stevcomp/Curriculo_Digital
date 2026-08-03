@@ -168,7 +168,7 @@ $formacoes = $pessoa ? readAll($pdo, 'formacao', 'dados_pessoais_id = ?', [$pess
                 <?php endif; ?>
             </div>
 
-            <p style="text-align:center; padding: 15px; font-size: 13px;">
+            <p style="text-align:center; padding: 15px; font-size: 15px;">
                 <a href="admin.php">✏️ Editar currículo</a>
             </p>
 

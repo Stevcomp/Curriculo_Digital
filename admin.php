@@ -203,7 +203,7 @@ $formacoes = $pessoa ? readAll($pdo, 'formacao', 'dados_pessoais_id = ?', [1]) :
                                 <input type="hidden" name="action" value="excluir">
                                 <input type="hidden" name="tabela" value="formacao">
                                 <input type="hidden" name="id" value="<?= $f['id'] ?>">
-                                <button type="submit" class="btn-exclui">Excluir</button>
+                                <button type="submit" class="btn-excluir">Excluir</button>
                             </form>
                         </li>
                     <?php endforeach; ?>

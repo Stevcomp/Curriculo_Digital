@@ -1,5 +1,72 @@
-/* Configuração padrão da página */
+/* ==========================================================================
+   Currículo Digital SENAI — Estilo Principal Moderno
+   ========================================================================== */
 
+/* Design Tokens & Variáveis do Sistema */
+:root {
+    --font-primary: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    
+    /* Cores — Tema Claro */
+    --bg-page: #edf2f7;
+    --bg-container: #ffffff;
+    --bg-card: #f8fafc;
+    --bg-badge: rgba(255, 255, 255, 0.15);
+    --bg-badge-hover: rgba(255, 255, 255, 0.25);
+    
+    --header-bg: linear-gradient(135deg, #0f172a 0%, #1e293b 60%, #2563eb 100%);
+    --header-text: #ffffff;
+    --header-subtext: #cbd5e1;
+    
+    --accent: #2563eb;
+    --accent-light: #eff6ff;
+    --accent-gradient: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --text-light: #94a3b8;
+    
+    --border: #e2e8f0;
+    --border-accent: #bfdbfe;
+    
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+    --shadow-lg: 0 20px 30px -10px rgba(15, 23, 42, 0.15);
+    
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
+    --radius-full: 9999px;
+    
+    --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Modo Escuro */
+[data-theme="dark"] {
+    --bg-page: #0b0f19;
+    --bg-container: #151c2c;
+    --bg-card: #1e293b;
+    --bg-badge: rgba(255, 255, 255, 0.1);
+    --bg-badge-hover: rgba(255, 255, 255, 0.2);
+    
+    --header-bg: linear-gradient(135deg, #020617 0%, #0f172a 70%, #1e3a8a 100%);
+    --header-text: #f8fafc;
+    --header-subtext: #94a3b8;
+    
+    --accent: #38bdf8;
+    --accent-light: rgba(56, 189, 248, 0.1);
+    --accent-gradient: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
+    
+    --text-main: #f1f5f9;
+    --text-muted: #94a3b8;
+    --text-light: #64748b;
+    
+    --border: #283548;
+    --border-accent: #1e3a8a;
+    
+    --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+}
+
+/* Reset Global */
 * {
     margin: 0;
     padding: 0;
@@ -7,72 +74,195 @@
 }
 
 body {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background-color: #dde5f0;
-    color: #2c3e50;
+    font-family: var(--font-primary);
+    background-color: var(--bg-page);
+    color: var(--text-main);
     line-height: 1.6;
+    padding-bottom: 50px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    -webkit-font-smoothing: antialiased;
 }
 
+/* Top Bar de Ações (Imprimir, Tema, Admin) */
+.top-bar {
+    background: var(--bg-container);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-sm);
+}
+
+.top-bar-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand-tag {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.top-bar-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.btn-top {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: var(--radius-full);
+    font-size: 14px;
+    font-weight: 600;
+    font-family: var(--font-primary);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.btn-pdf {
+    background: #dc2626;
+    color: #ffffff;
+}
+
+.btn-pdf:hover {
+    background: #b91c1c;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+}
+
+.btn-doc {
+    background: #10b981;
+    color: #ffffff;
+}
+
+.btn-doc:hover {
+    background: #059669;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.btn-theme {
+    background: var(--bg-card);
+    color: var(--text-main);
+    border: 1px solid var(--border);
+}
+
+.btn-theme:hover {
+    background: var(--border);
+}
+
+.btn-admin {
+    background: var(--accent);
+    color: #ffffff;
+}
+
+.btn-admin:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+/* Container do Currículo */
 .container {
-    max-width: 800px;
-    margin: 40px auto;
-    background: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.08);
+    max-width: 900px;
+    margin: 30px auto;
+    background: var(--bg-container);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
     overflow: hidden;
+    border: 1px solid var(--border);
+    transition: var(--transition);
 }
 
-/* Cabeçalho com dados pessoais */
+/* Cabeçalho do Perfil */
 .header {
-    background-color: #2c3e50;
-    color: #fff;
-    padding: 30px 40px;
+    background: var(--header-bg);
+    color: var(--header-text);
+    padding: 40px 45px;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 20px;
+    gap: 30px;
+    position: relative;
 }
+
 .header-info {
     flex: 1;
 }
 
-.header h1 {
-    font-size: 28px;
-    margin-bottom: 4px;
+.header-nome {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+    margin-bottom: 6px;
 }
 
-.header h2 {
-    font-size: 24px;
-    font-weight: 400;
-    opacity: 1.00;
+.header-cargo {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--header-subtext);
+    margin-bottom: 10px;
 }
 
-.header .resumo {
+.header-cidade {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.85);
+    background: var(--bg-badge);
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+    margin-bottom: 12px;
+}
+
+.resumo {
     margin-top: 15px;
-    font-size: 18px;
-    opacity: 0.9;
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 620px;
 }
 
-/* Container da foto no canto direito */
+/* Avatar de Perfil */
 .perfil-avatar-container {
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex-shrink: 0; 
+    flex-shrink: 0;
 }
 
 .perfil-avatar {
-    width: 110px;
-    height: 110px;
+    width: 125px;
+    height: 125px;
     border-radius: 50%;
-    background-color: #1a252f;
-    border: 3px solid #ffffff;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 4px solid #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    transition: var(--transition);
+}
+
+.perfil-avatar:hover {
+    transform: scale(1.03);
 }
 
 .perfil-avatar img {
@@ -82,8 +272,8 @@ body {
 }
 
 .perfil-avatar i {
-    font-size: 45px;
-    color: #bdc3c7;
+    font-size: 55px;
+    color: #cbd5e1;
 }
 
 #input-foto {
@@ -92,84 +282,354 @@ body {
 
 .btn-upload-foto {
     position: absolute;
-    bottom: 0;
-    right: 0;
-    background-color: #8b8f94;
-    width: 32px;
-    height: 32px;
+    bottom: 2px;
+    right: 2px;
+    background: var(--accent);
+    color: #ffffff;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    border: 2px solid #ffffff;
-    transition: background 0.3s ease;
+    border: 3px solid #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: var(--transition);
 }
 
 .btn-upload-foto:hover {
-    background-color: #2c3e50;
+    background: #1d4ed8;
+    transform: scale(1.1);
 }
 
-/* Lista de contatos */
+/* Badges de Contatos */
 .contatos {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 15px;
-    font-size: 13px;
+    gap: 10px;
+    margin-top: 20px;
 }
 
-.contatos span {
-    background: rgba(255, 255, 255, 0.15);
-    padding: 8px 14px;
-    border-radius: 4px;
-    font-size: 16px;
+.contato-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--bg-badge);
+    color: #ffffff;
+    padding: 8px 16px;
+    border-radius: var(--radius-full);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+    transition: var(--transition);
 }
 
-/* Seções (experiência e formação) */
+.contato-badge:hover {
+    background: var(--bg-badge-hover);
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.contato-vazio {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    font-style: italic;
+}
+
+/* Conteúdo Principal */
+.content-body {
+    padding: 35px 45px;
+}
+
+/* Seções */
 .section {
-    padding: 30px 40px;
-    border-bottom: 1px solid #eee;
+    margin-bottom: 35px;
 }
 
 .section:last-child {
-    border-bottom: none;
-}
-
-.section h3 {
-    font-size: 22px;
-    color: #2c3e50;
-    margin-bottom: 18px;
-    border-left: 4px solid #2c3e50;
-    padding-left: 10px;
-}
-
-.item {
-    margin-bottom: 18px;
-}
-
-.item:last-child {
     margin-bottom: 0;
 }
 
-.item .titulo {
-    font-weight: 600;
+.section-title {
     font-size: 20px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border);
 }
 
-.item .periodo {
-    font-size: 16px;
-    color: #888;
+.section-title i {
+    color: var(--accent);
+}
+
+/* Visual de Timeline para Experiência e Formação */
+.timeline {
+    position: relative;
+    padding-left: 24px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 6px;
+    bottom: 6px;
+    width: 2px;
+    background: var(--border);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 28px;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -24px;
+    top: 6px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 3px solid var(--bg-container);
+    box-shadow: 0 0 0 2px var(--border);
+    transition: var(--transition);
+}
+
+.timeline-item:hover .timeline-dot {
+    background: #1d4ed8;
+    transform: scale(1.2);
+}
+
+.item-header {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-main);
     margin-bottom: 4px;
 }
 
-.item .descricao {
-    font-size: 18px;
-    color: #444;
+.item-header .empresa {
+    font-weight: 500;
+    color: var(--text-muted);
 }
 
+.item .periodo {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.item .descricao {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+/* Grid de Certificados */
+.certificados-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 16px;
+}
+
+.certificado-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 18px 20px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    transition: var(--transition);
+}
+
+.certificado-card:hover {
+    border-color: var(--border-accent);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.cert-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-sm);
+    background: var(--accent-light);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.cert-details {
+    flex: 1;
+}
+
+.cert-nome {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 4px;
+}
+
+.cert-instituicao {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.cert-link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+}
+
+.cert-link-btn:hover {
+    text-decoration: underline;
+}
+
+/* Mensagens de estado vazio */
 .vazio {
     font-size: 14px;
-    color: #999;
+    color: var(--text-light);
     font-style: italic;
+    padding: 10px 0;
+}
+
+/* Rodapé */
+.footer {
+    text-align: center;
+    padding: 20px 45px;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--text-muted);
+    background: var(--bg-card);
+}
+
+.footer a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* Media Queries para Responsividade */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column-reverse;
+        align-items: center;
+        text-align: center;
+        padding: 30px 20px;
+    }
+
+    .contatos {
+        justify-content: center;
+    }
+
+    .content-body {
+        padding: 25px 20px;
+    }
+
+    .certificados-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================================================
+   ESTILOS DE IMPRESSÃO (PDF PERFECT PRINT)
+   ========================================================================== */
+@media print {
+    body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        padding: 0 !important;
+        font-size: 13px !important;
+    }
+
+    .top-bar,
+    .btn-upload-foto,
+    .footer {
+        display: none !important;
+    }
+
+    .container {
+        margin: 0 !important;
+        max-width: 100% !important;
+        box-shadow: none !important;
+        border: none !important;
+        border-radius: 0 !important;
+    }
+
+    .header {
+        background: #0f172a !important;
+        color: #ffffff !important;
+        padding: 25px 30px !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .header-nome {
+        font-size: 26px !important;
+    }
+
+    .header-cargo {
+        font-size: 17px !important;
+    }
+
+    .contato-badge {
+        background: rgba(255, 255, 255, 0.15) !important;
+        color: #ffffff !important;
+        border: none !important;
+        padding: 4px 10px !important;
+        font-size: 12px !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .content-body {
+        padding: 20px 30px !important;
+    }
+
+    .section {
+        page-break-inside: avoid;
+        margin-bottom: 20px !important;
+    }
+
+    .section-title {
+        font-size: 16px !important;
+        margin-bottom: 14px !important;
+    }
+
+    .timeline-dot {
+        background: #2563eb !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .certificado-card {
+        background: #f8fafc !important;
+        border: 1px solid #cbd5e1 !important;
+        page-break-inside: avoid;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
 }

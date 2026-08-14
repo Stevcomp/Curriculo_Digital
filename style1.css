@@ -1,131 +1,551 @@
-/* Configuração padrão da página */
-* { 
-    box-sizing: border-box; 
+/* ==========================================================================
+   Painel Administrativo — Estilo Dashboard (style1.css)
+   ========================================================================== */
+
+/* Design Tokens & Variáveis */
+:root {
+    --font-primary: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    
+    --bg-page: #edf2f7;
+    --bg-card: #ffffff;
+    --bg-input: #ffffff;
+    
+    --accent: #2563eb;
+    --accent-hover: #1d4ed8;
+    --accent-light: #eff6ff;
+    
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --text-light: #94a3b8;
+    
+    --border: #e2e8f0;
+    --border-focus: #3b82f6;
+    
+    --danger: #ef4444;
+    --danger-hover: #dc2626;
+    --gold: #d97706;
+    
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 8px 20px -4px rgba(15, 23, 42, 0.08);
+    
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-full: 9999px;
+    
+    --transition: all 0.2s ease;
+}
+
+[data-theme="dark"] {
+    --bg-page: #0b0f19;
+    --bg-card: #151c2c;
+    --bg-input: #1e293b;
+    
+    --accent: #38bdf8;
+    --accent-hover: #0284c7;
+    --accent-light: rgba(56, 189, 248, 0.1);
+    
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --text-light: #64748b;
+    
+    --border: #283548;
+    --border-focus: #38bdf8;
+    
+    --shadow-md: 0 8px 20px -4px rgba(0, 0, 0, 0.5);
+}
+
+/* Reset Base */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: #dde5f0;
-    color: #2c3e50;
-    padding: 30px;
+    font-family: var(--font-primary);
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    padding: 30px 20px 60px;
+    line-height: 1.5;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Estrutura do painel de administração */
+/* Container do Admin */
 .admin-container {
-    max-width: 700px;
+    max-width: 850px;
     margin: 0 auto;
 }
 
-h1 { 
-    margin-bottom: 5px; 
+/* Cabeçalho do Admin */
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    background: var(--bg-card);
+    padding: 20px 25px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
 }
 
-/* Cartões dos Forms e das seções */
+.header-title h1 {
+    font-size: 22px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-main);
+}
+
+.header-title h1 i {
+    color: var(--accent);
+}
+
+.header-title p {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+.header-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Cartões de Seção */
 .card {
-    background: #fff;
-    border-radius: 8px;
+    background: var(--bg-card);
+    border-radius: var(--radius-md);
     padding: 25px;
-    margin-top: 20px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    margin-bottom: 22px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+    transition: var(--transition);
 }
 
 .card h2 {
-    font-size: 20px;
-    margin-bottom: 15px;
-    border-left: 4px solid #2c3e50;
-    padding-left: 10px;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--border);
 }
 
-.card p {
-    font-weight: 500;
+.card h2 i {
+    color: var(--accent);
 }
 
-/* Formulários, rótulos e campos de entrada */
+.card h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 20px 0 12px;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Formulários & Campos */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full-width {
+    grid-column: span 2;
+}
+
 label {
     display: block;
-    font-size: 20px;
+    font-size: 13px;
     font-weight: 600;
-    margin-top: 12px;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
+    color: var(--text-main);
 }
 
-input[type="text"], 
-textarea, 
+input[type="text"],
+input[type="url"],
+textarea,
 select {
     width: 100%;
-    padding: 8px 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    margin-bottom: 8px;
-}
-
-/* Botões padrões e de interações */
-button {
-    background: #2c3e50;
-    color: #fff;
-    border: none;
-    padding: 10px 18px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 18px;
-    margin-top: 8px;
-}
-
-button:hover { 
-    background: #1a2634; 
-}
-
-/* Botão de exclusão de dados */
-.btn-excluir {
-    background: #c0392b;
-    padding: 6px 12px;
+    padding: 10px 14px;
+    background-color: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
     font-size: 14px;
-    margin: 0 0 0 10px;
+    font-family: var(--font-primary);
+    color: var(--text-main);
+    transition: var(--transition);
+    outline: none;
 }
 
-.btn-excluir:hover { 
-    background: #922b21; 
+input[type="text"]:focus,
+input[type="url"]:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px var(--accent-light);
 }
 
-/* Listagem de itens cadastrados */
+textarea {
+    resize: vertical;
+}
+
+.form-actions {
+    grid-column: span 2;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.form-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.form-row input {
+    flex: 1;
+}
+
+.file-input-box {
+    background: var(--bg-page);
+    border: 2px dashed var(--border);
+    padding: 12px 14px;
+    border-radius: var(--radius-sm);
+    margin-top: 6px;
+}
+
+.file-input-box label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.file-attached {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #10b981;
+}
+
+.file-attached a {
+    color: var(--accent);
+    text-decoration: underline;
+}
+
+.form-inline {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.form-inline select {
+    width: 200px;
+}
+
+.form-inline input {
+    flex: 1;
+}
+
+.form-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 15px;
+    background: var(--bg-page);
+    padding: 18px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+}
+
+/* Botões */
+.btn-primary {
+    background: var(--accent);
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: var(--font-primary);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition);
+}
+
+.btn-primary:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background: var(--bg-page);
+    color: var(--text-main);
+    border: 1px solid var(--border);
+    padding: 9px 16px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: var(--font-primary);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: var(--transition);
+}
+
+.btn-secondary:hover {
+    background: var(--border);
+}
+
+.btn-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--bg-page);
+    border: 1px solid var(--border);
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-icon:hover {
+    background: var(--border);
+}
+
+.btn-editar {
+    background: var(--bg-page);
+    color: var(--accent);
+    border: 1px solid var(--border);
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: var(--transition);
+}
+
+.btn-editar:hover {
+    background: var(--accent-light);
+    border-color: var(--accent);
+}
+
+.btn-excluir {
+    background: #fef2f2;
+    color: var(--danger);
+    border: 1px solid #fecaca;
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: var(--transition);
+}
+
+.btn-excluir:hover {
+    background: var(--danger);
+    color: #ffffff;
+}
+
+/* Listagem de Itens Cadastrados */
 .lista {
     list-style: none;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .lista li {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 8px 0;
-    border-bottom: 1px solid #eee;
-    font-size: 17px;
+    padding: 12px 14px;
+    background: var(--bg-page);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    margin-bottom: 10px;
+    font-size: 14px;
+    transition: var(--transition);
 }
 
-/* Layouts de utilidade do formulário */
-.form-excluir { 
-    display: inline; 
+.lista li:hover {
+    border-color: var(--border-focus);
 }
 
-.form-inline {
+.item-info {
+    flex: 1;
     display: flex;
+    flex-wrap: wrap;
+    align-items: center;
     gap: 8px;
-    align-items: flex-end;
 }
 
-.form-inline input, 
-.form-inline select { 
-    margin-bottom: 0; 
+.badge-tipo {
+    font-size: 11px;
+    font-weight: 700;
+    background: var(--accent-light);
+    color: var(--accent);
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
 }
 
-.form-stack { 
-    display: flex; 
-    flex-direction: column; 
+.empresa-nome {
+    font-weight: 600;
+    color: var(--text-main);
 }
 
-/* Mensagens de estado vazio */
-.vazio { 
-    color: #999; 
-    font-style: italic; 
+.periodo-badge {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-left: 6px;
+}
+
+.desc-preview {
+    width: 100%;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+.cert-link {
+    font-size: 12px;
+    color: var(--accent);
+    margin-left: 8px;
+    text-decoration: none;
+}
+
+.text-gold {
+    color: var(--gold);
+}
+
+.item-actions {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.form-excluir {
+    display: inline;
+}
+
+.vazio {
+    color: var(--text-light);
+    font-style: italic;
+    padding: 10px 0;
+    font-size: 14px;
+}
+
+/* Modal de Edição */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(4px);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal-content {
+    background-color: var(--bg-card);
+    border-radius: var(--radius-md);
+    padding: 30px;
+    max-width: 550px;
+    width: 100%;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border);
+    position: relative;
+    animation: modalSlide 0.2s ease-out;
+}
+
+@keyframes modalSlide {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--text-muted);
+    cursor: pointer;
+}
+
+.modal-close:hover {
+    color: var(--text-main);
+}
+
+.modal h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+}
+
+/* Responsividade Admin */
+@media (max-width: 600px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+    .form-group.full-width {
+        grid-column: span 1;
+    }
+    .form-inline {
+        flex-direction: column;
+    }
+    .form-inline select,
+    .form-inline input {
+        width: 100%;
+    }
+    .admin-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
 }

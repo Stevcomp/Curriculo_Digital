@@ -62,7 +62,25 @@ CREATE TABLE formacao (
     CONSTRAINT fk_formacao_dados_pessoais
         FOREIGN KEY (dados_pessoais_id)
         REFERENCES dados_pessoais(id)
+        ) ENGINE=InnoDB;
+
+-- ---------------------------------------------------
+-- Tabela 5: certificados
+-- Certificados e cursos complementares
+-- ---------------------------------------------------
+CREATE TABLE IF NOT EXISTS certificados (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    dados_pessoais_id INT NOT NULL,
+    nome VARCHAR(150) NOT NULL,
+    instituicao VARCHAR(150) NOT NULL,
+    ano VARCHAR(50) NOT NULL,
+    link VARCHAR(255) DEFAULT NULL,
+
+    CONSTRAINT fk_certificados_dados_pessoais
+        FOREIGN KEY (dados_pessoais_id)
+        REFERENCES dados_pessoais(id)
         ON DELETE CASCADE
         ON UPDATE CASCADE
 ) ENGINE=InnoDB;
+
 
